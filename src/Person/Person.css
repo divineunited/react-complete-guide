@@ -6,3 +6,10 @@
     padding: 16px;
     text-align: center;
 }
+
+/* Lets do this inline with radium to scope to component / change dynamically */
+/* @media (min-width: 500px) {
+    .Person {
+        width: 450px;
+    }
+} */
