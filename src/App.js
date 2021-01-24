@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
+import styled from 'styled-components';
 import Person from './Person/Person';
+
+const StyledButton = styled.button`
+      background-color: ${props => props.alt ? 'red' : 'green'};
+      color: white;
+      font: inherit;
+      border: 1px solid blue;
+      padding: 8px;
+      cursor: pointer;
+      
+      &:hover {
+        background-color: ${props => props.alt ? 'lightgreen' : 'salmon'};
+        color: black;
+      }
+`
 
 class App extends Component {
 
@@ -41,19 +56,6 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      // uses Radium to allow CSS pseudoselector inline
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
 
     let persons = null;
     if (this.state.showPersons) {
@@ -70,11 +72,6 @@ class App extends Component {
           })}
         </div>
       );
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      };
     }
 
     const classes = [] // CSS class names from app.css
@@ -89,12 +86,12 @@ class App extends Component {
       <div className="App">
         <h1>Hi! I'm a react app!</h1>
         <p className={classes.join(' ')}>How many persons do I have left?</p>
-        <button 
-          style={style}
+        <StyledButton
+          alt={this.state.showPersons}
           onClick={this.togglePersonsHandler}
         >
         Show Persons
-        </button>
+        </StyledButton>
         {persons}
       </div>
     );
